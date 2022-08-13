@@ -15,4 +15,8 @@ defmodule Canvas do
   def hello do
     :world
   end
+
+  def get_secret(key)
+    :some_value
+  end
 end
