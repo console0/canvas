@@ -16,7 +16,7 @@ defmodule Canvas do
     :world
   end
 
-  def get_secret(key)
+  def get_secret(key) do
     :some_value
   end
 end
