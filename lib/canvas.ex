@@ -16,6 +16,11 @@ defmodule Canvas do
     :world
   end
 
+  def get_config_key(key) do
+    IO.inspect(key)
+    :debug
+  end
+
   def get_secret(key) do
     IO.inspect(key)
     :some_value
