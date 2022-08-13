@@ -16,9 +16,22 @@ defmodule Canvas do
     :world
   end
 
-  def get_config_key(key) do
-    IO.inspect(key)
-    :debug
+  def load_config_key(_app,key) do
+    {:error, "Config key not found: " <> key}
+  end
+
+  def get_config_key(app,key) do
+    case load_config_key(app,key) do
+      {:ok, config} -> config
+      {:error, _} -> nil
+    end
+  end
+
+  def get_config_key!(app,key) do
+    case load_config_key(app,key) do
+      {:ok, config} -> config
+      {:error, message} -> raise RuntimeError, message: message
+    end
   end
 
   def load_secret(_app,key) do
@@ -27,7 +40,10 @@ defmodule Canvas do
   end
 
   def get_secret(app,key) do
-    load_secret(app,key) |> elem(1)
+    case load_secret(app,key) do
+      {:ok, secret} -> secret
+      {:error, _} -> nil
+    end
   end
 
   def get_secret!(app,key) do
