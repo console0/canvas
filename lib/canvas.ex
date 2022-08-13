@@ -21,8 +21,14 @@ defmodule Canvas do
     :debug
   end
 
-  def get_secret(key) do
-    IO.inspect(key)
-    :some_value
+  def get_secret(_app,key) do
+    {:error, "Secret not found: " <> key}
+  end
+
+  def get_secret!(app,key) do
+    case get_secret(app,key) do
+      {:ok, result} -> result
+      {:error, message} -> raise RuntimeError, message: message
+    end
   end
 end
