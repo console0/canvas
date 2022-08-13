@@ -17,6 +17,7 @@ defmodule Canvas do
   end
 
   def get_secret(key) do
+    IO.inspect(key)
     :some_value
   end
 end
